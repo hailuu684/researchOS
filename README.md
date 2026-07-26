@@ -16,7 +16,7 @@ Choose one of the following execution methods depending on your needs:
 
 * **Persistent Web Interface (Up to 1 Week):**
   ```bash
-  python gradio test_app.py
+  gradio test_app.py
   ```
 * **Single-Session/One-Time Run:**
   ```bash
