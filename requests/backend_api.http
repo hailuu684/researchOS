@@ -1,0 +1,101 @@
+@baseUrl = http://localhost:8000
+@projectId = replace_after_create_project
+@submissionId = replace_after_submit
+@reviewId = replace_after_review
+
+### Health
+GET {{baseUrl}}/health
+
+### Smoke test Modal endpoint
+GET {{baseUrl}}/llm/smoke
+
+### Create a project
+# @name createProject
+POST {{baseUrl}}/projects
+Content-Type: application/json
+
+{
+  "topic": "LLM-driven point cloud reasoning with verifiable geometric evidence",
+  "target_standard": "paper-ready / Q1-oriented",
+  "constraints": "VSCode REST Client backend test. LLM assists; PI remains final decision maker.",
+  "use_llm": true,
+  "fallback_on_llm_error": true,
+  "students": [
+    {
+      "student_id": "S_JUNIOR_01",
+      "name": "An",
+      "level": "junior",
+      "skills": ["literature review", "python basics"],
+      "availability_hours_per_week": 8
+    },
+    {
+      "student_id": "S_INTERMEDIATE_01",
+      "name": "Binh",
+      "level": "intermediate",
+      "skills": ["python", "experiments", "data processing"],
+      "availability_hours_per_week": 10
+    },
+    {
+      "student_id": "S_STRONG_01",
+      "name": "Chi",
+      "level": "strong",
+      "skills": ["research design", "LLM", "3D perception"],
+      "availability_hours_per_week": 12
+    }
+  ]
+}
+
+### Copy project_id from response, then set @projectId above.
+
+### Get package P1
+GET {{baseUrl}}/projects/{{projectId}}/packages/P1
+
+### Submit package P1
+# @name submitPackage
+POST {{baseUrl}}/projects/{{projectId}}/submissions
+Content-Type: application/json
+
+{
+  "package_id": "P1",
+  "student_id": "S_JUNIOR_01",
+  "artifact_paths": [
+    "paper_cards.md",
+    "dangerous_prior_art_matrix.csv",
+    "gap_cards.md"
+  ],
+  "report_text": "# Task summary\nI created paper cards for recent work on LLM-driven point-cloud and 3D scene reasoning.\n\n# Parent research question and claim\nThis supports C1 and E1.\n\n# Method or procedure\nI searched 3D-LLM, point-cloud LLM, spatial reasoning, benchmark leakage, and tool-use terms.\n\n# Output artifacts\n- paper_cards.md\n- dangerous_prior_art_matrix.csv\n- gap_cards.md\n\n# Result interpretation\nThe stronger direction is evidence-grounded point-cloud reasoning with geometry tools, answer evidence IDs, and shortcut controls.\n\n# Limitations and confounders\nNeeds second pass on newest papers and synonym search.\n\n# Reproducibility commands\nNo code execution required. Search queries are recorded.\n\n# Next step recommendation\nPI should review dangerous prior-art and approve the contribution angle."
+}
+
+### Copy submission_id from response, then set @submissionId above.
+
+### Review submission
+# @name reviewSubmission
+POST {{baseUrl}}/projects/{{projectId}}/submissions/{{submissionId}}/review
+Content-Type: application/json
+
+{
+  "use_llm": true,
+  "fallback_on_llm_error": true
+}
+
+### Copy review_id from response, then set @reviewId above.
+
+### Understanding gate
+POST {{baseUrl}}/projects/{{projectId}}/reviews/{{reviewId}}/understanding
+Content-Type: application/json
+
+{
+  "use_llm": true,
+  "fallback_on_llm_error": true,
+  "answers": [
+    "Dangerous prior art is a paper that could make our contribution look incremental or already solved.",
+    "The weakest gap is generic point-cloud QA because many existing 3D QA benchmarks already cover it. The stronger gap is tool-verifiable geometric reasoning with evidence IDs and shortcut controls.",
+    "This package helps the PI decide whether the topic is worth pursuing by exposing closest work, novelty risks, likely reviewer objections, and required evidence."
+  ]
+}
+
+### PI dashboard
+GET {{baseUrl}}/projects/{{projectId}}/dashboard
+
+### Full project state
+GET {{baseUrl}}/projects/{{projectId}}

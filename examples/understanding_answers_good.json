@@ -1,0 +1,5 @@
+[
+  "Dangerous prior art is a paper that a reviewer could use to say our contribution is incremental or already solved. It matters because we should not assign downstream benchmark or method tasks until we know which claim is defensible.",
+  "The weakest gap is generic point-cloud QA because many existing 3D-LLM benchmarks already cover visual question answering. The stronger gap is tool-verifiable geometric reasoning with evidence IDs and shortcut controls.",
+  "This package helps the PI decide whether the topic is worth pursuing by exposing closest work, novelty risks, likely reviewer objections, and what evidence would be required before the project can become paper-ready."
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "student_id": "S_JUNIOR_01",
+    "name": "An",
+    "level": "junior",
+    "skills": ["literature review", "python basics"],
+    "availability_hours_per_week": 12,
+    "notes": "Good fit for structured survey and reproduction tasks."
+  },
+  {
+    "student_id": "S_INTERMEDIATE_01",
+    "name": "Binh",
+    "level": "intermediate",
+    "skills": ["python", "experiments", "data processing"],
+    "availability_hours_per_week": 10,
+    "notes": "Can own engineering and experiment packages with review."
+  },
+  {
+    "student_id": "S_STRONG_01",
+    "name": "Chi",
+    "level": "strong",
+    "skills": ["research design", "LLM", "3D perception"],
+    "availability_hours_per_week": 8,
+    "notes": "Can own high-criticality claim/evidence and method packages."
+  },
+  {
+    "student_id": "S_SENIOR_01",
+    "name": "Dung",
+    "level": "senior",
+    "skills": ["paper framing", "reviewer response", "project synthesis"],
+    "availability_hours_per_week": 6,
+    "notes": "Can review PI-ready synthesis and high-risk novelty decisions."
+  }
+]
